@@ -1,0 +1,345 @@
+[
+  {
+    "name": "昔涟",
+    "file": "昔涟.json",
+    "rarity": "5星",
+    "attribute": "冰",
+    "path": "记忆"
+  },
+  {
+    "name": "流萤",
+    "file": "流萤.json",
+    "rarity": "5星",
+    "attribute": "火",
+    "path": "毁灭"
+  },
+  {
+    "name": "爻光",
+    "file": "爻光.json",
+    "rarity": "5星",
+    "attribute": "物理",
+    "path": "欢愉"
+  },
+  {
+    "name": "知更鸟",
+    "file": "知更鸟.json",
+    "rarity": "5星",
+    "attribute": "物理",
+    "path": "同谐"
+  },
+  {
+    "name": "绯英",
+    "file": "绯英.json",
+    "rarity": "5星",
+    "attribute": "物理",
+    "path": "欢愉"
+  },
+  {
+    "name": "遐蝶",
+    "file": "遐蝶.json",
+    "rarity": "5星",
+    "attribute": "量子",
+    "path": "记忆"
+  },
+  {
+    "name": "阮·梅",
+    "file": "阮·梅.json",
+    "rarity": "5星",
+    "attribute": "冰",
+    "path": "同谐"
+  },
+  {
+    "name": "风堇",
+    "file": "风堇.json",
+    "rarity": "5星",
+    "attribute": "风",
+    "path": "记忆"
+  },
+  {
+    "name": "Archer",
+    "file": "Archer.json",
+    "rarity": "5星",
+    "attribute": "量子",
+    "path": "巡猎"
+  },
+  {
+    "name": "Saber",
+    "file": "Saber.json",
+    "rarity": "5星",
+    "attribute": "风",
+    "path": "毁灭"
+  },
+  {
+    "name": "万敌",
+    "file": "万敌.json",
+    "rarity": "5星",
+    "attribute": "虚数",
+    "path": "毁灭"
+  },
+  {
+    "name": "三月七",
+    "file": "三月七.json",
+    "rarity": "4星",
+    "attribute": "冰",
+    "path": "存护"
+  },
+  {
+    "name": "丹恒",
+    "file": "丹恒.json",
+    "rarity": "4星",
+    "attribute": "风",
+    "path": "巡猎"
+  },
+  {
+    "name": "云璃",
+    "file": "云璃.json",
+    "rarity": "5星",
+    "attribute": "物理",
+    "path": "毁灭"
+  },
+  {
+    "name": "佩拉",
+    "file": "佩拉.json",
+    "rarity": "4星",
+    "attribute": "冰",
+    "path": "虚无"
+  },
+  {
+    "name": "克拉拉",
+    "file": "克拉拉.json",
+    "rarity": "5星",
+    "attribute": "物理",
+    "path": "毁灭"
+  },
+  {
+    "name": "刻律德菈",
+    "file": "刻律德菈.json",
+    "rarity": "5星",
+    "attribute": "风",
+    "path": "同谐"
+  },
+  {
+    "name": "卡芙卡",
+    "file": "卡芙卡.json",
+    "rarity": "5星",
+    "attribute": "雷",
+    "path": "虚无"
+  },
+  {
+    "name": "吉尔伽美什",
+    "file": "吉尔伽美什.json",
+    "rarity": "5星",
+    "attribute": "雷",
+    "path": "毁灭"
+  },
+  {
+    "name": "大丽花",
+    "file": "大丽花.json",
+    "rarity": "5星",
+    "attribute": "火",
+    "path": "虚无"
+  },
+  {
+    "name": "大黑塔",
+    "file": "大黑塔.json",
+    "rarity": "5星",
+    "attribute": "冰",
+    "path": "智识"
+  },
+  {
+    "name": "姬子•启行",
+    "file": "姬子•启行.json",
+    "rarity": "5星",
+    "attribute": "火",
+    "path": "智识"
+  },
+  {
+    "name": "布洛妮娅",
+    "file": "布洛妮娅.json",
+    "rarity": "5星",
+    "attribute": "风",
+    "path": "同谐"
+  },
+  {
+    "name": "希儿",
+    "file": "希儿.json",
+    "rarity": "5星",
+    "attribute": "量子",
+    "path": "巡猎"
+  },
+  {
+    "name": "希露瓦",
+    "file": "希露瓦.json",
+    "rarity": "4星",
+    "attribute": "雷",
+    "path": "智识"
+  },
+  {
+    "name": "托帕",
+    "file": "托帕.json",
+    "rarity": "5星",
+    "attribute": "火",
+    "path": "巡猎"
+  },
+  {
+    "name": "星期日",
+    "file": "星期日.json",
+    "rarity": "5星",
+    "attribute": "虚数",
+    "path": "同谐"
+  },
+  {
+    "name": "景元",
+    "file": "景元.json",
+    "rarity": "5星",
+    "attribute": "雷",
+    "path": "智识"
+  },
+  {
+    "name": "杰帕德",
+    "file": "杰帕德.json",
+    "rarity": "5星",
+    "attribute": "冰",
+    "path": "存护"
+  },
+  {
+    "name": "海瑟音",
+    "file": "海瑟音.json",
+    "rarity": "5星",
+    "attribute": "物理",
+    "path": "虚无"
+  },
+  {
+    "name": "火花",
+    "file": "火花.json",
+    "rarity": "5星",
+    "attribute": "火",
+    "path": "欢愉"
+  },
+  {
+    "name": "灵砂",
+    "file": "灵砂.json",
+    "rarity": "5星",
+    "attribute": "火",
+    "path": "丰饶"
+  },
+  {
+    "name": "瓦尔特",
+    "file": "瓦尔特.json",
+    "rarity": "5星",
+    "attribute": "虚数",
+    "path": "虚无"
+  },
+  {
+    "name": "白厄",
+    "file": "白厄.json",
+    "rarity": "5星",
+    "attribute": "物理",
+    "path": "毁灭"
+  },
+  {
+    "name": "砂金",
+    "file": "砂金.json",
+    "rarity": "5星",
+    "attribute": "虚数",
+    "path": "存护"
+  },
+  {
+    "name": "符玄",
+    "file": "符玄.json",
+    "rarity": "5星",
+    "attribute": "量子",
+    "path": "存护"
+  },
+  {
+    "name": "缇宝",
+    "file": "缇宝.json",
+    "rarity": "5星",
+    "attribute": "量子",
+    "path": "同谐"
+  },
+  {
+    "name": "翡翠",
+    "file": "翡翠.json",
+    "rarity": "5星",
+    "attribute": "量子",
+    "path": "智识"
+  },
+  {
+    "name": "艾丝妲",
+    "file": "艾丝妲.json",
+    "rarity": "4星",
+    "attribute": "火",
+    "path": "同谐"
+  },
+  {
+    "name": "藿藿",
+    "file": "藿藿.json",
+    "rarity": "5星",
+    "attribute": "风",
+    "path": "丰饶"
+  },
+  {
+    "name": "赛飞儿",
+    "file": "赛飞儿.json",
+    "rarity": "5星",
+    "attribute": "量子",
+    "path": "虚无"
+  },
+  {
+    "name": "远坂凛",
+    "file": "远坂凛.json",
+    "rarity": "5星",
+    "attribute": "量子",
+    "path": "智识"
+  },
+  {
+    "name": "那刻夏",
+    "file": "那刻夏.json",
+    "rarity": "5星",
+    "attribute": "风",
+    "path": "智识"
+  },
+  {
+    "name": "银枝",
+    "file": "银枝.json",
+    "rarity": "5星",
+    "attribute": "物理",
+    "path": "智识"
+  },
+  {
+    "name": "银狼LV.999",
+    "file": "银狼LV.999.json",
+    "rarity": "5星",
+    "attribute": "虚数",
+    "path": "欢愉"
+  },
+  {
+    "name": "镜流",
+    "file": "镜流.json",
+    "rarity": "5星",
+    "attribute": "冰",
+    "path": "毁灭"
+  },
+  {
+    "name": "长夜月",
+    "file": "长夜月.json",
+    "rarity": "5星",
+    "attribute": "冰",
+    "path": "记忆"
+  },
+  {
+    "name": "黄泉",
+    "file": "黄泉.json",
+    "rarity": "5星",
+    "attribute": "雷",
+    "path": "虚无"
+  },
+  {
+    "name": "黑塔",
+    "file": "黑塔.json",
+    "rarity": "4星",
+    "attribute": "冰",
+    "path": "智识"
+  }
+]
