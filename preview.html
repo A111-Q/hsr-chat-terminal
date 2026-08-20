@@ -510,6 +510,13 @@ body{
 }
 .switch-label input{ width:auto; }
 .switch-label span{ font-size:13px; color:var(--ink); font-weight:500; }
+.switch-label .sound-preview{
+  margin-left:4px; padding:3px 10px; border-radius:12px;
+  font-size:11px; font-weight:600; color:var(--accent);
+  background:var(--accent-pale); border:1px solid var(--accent-border);
+  cursor:pointer; transition:transform .15s, background .15s;
+}
+.switch-label .sound-preview:hover{ background:var(--accent-soft); color:#fff; transform:translateY(-1px); }
 .avatar-select-row .avatar-presets{
   display:flex; gap:10px; flex-wrap:wrap;
 }
@@ -2174,6 +2181,7 @@ input[type="range"]{ padding:0; height:6px; accent-color:var(--accent); }
           <label class="switch-label">
             <input id="cfgSound" type="checkbox">
             <span>消息提示音</span>
+            <button type="button" class="sound-preview" onclick="previewMessageSound()" title="试听提示音">试听</button>
           </label>
         </div>
         <div class="form-row">
@@ -3646,9 +3654,82 @@ async function send(opts={}){
   }
 }
 
+/* ===== 消息提示音（QQ 风格"叮咚"双音，WebAudio 合成，无需外部资源） =====
+ * 设计要点：
+ *  1. 双音（先高后低）短促清脆，总长 <0.5s，模拟 QQ 提示音辨识度；
+ *  2. 通过 WebAudio 振荡器实时合成：无音频文件加载、无跨域/缓存问题，
+ *     任何部署方式（file:// / https）都稳定可用；
+ *  3. 节流防叠加：同一时刻（400ms 内）只允许一声，多条消息连发不吵；
+ *  4. 兼容自动播放限制：首次用户手势后解锁 AudioContext；
+ *  5. 音量适中（0.5 峰值），指数衰减包络避免爆音。
+ */
+let messageSoundCtx = null;          // 惰性创建的 AudioContext
+let messageSoundUnlocked = false;    // 是否已通过用户手势解锁
+let lastMessageSoundAt = 0;          // 上次发声时间戳（节流）
+
+// 在任何用户手势（点击/键盘）上调用一次，解锁自动播放限制
+function unlockMessageSound(){
+  if(messageSoundUnlocked) return;
+  messageSoundUnlocked = true;
+  try{
+    if(!messageSoundCtx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(AC) messageSoundCtx = new AC();
+    }
+    if(messageSoundCtx && messageSoundCtx.state === 'suspended'){
+      messageSoundCtx.resume().catch(()=>{});
+    }
+  }catch(e){ /* 环境不支持则静默 */ }
+}
+
+// 实际发声：WebAudio 合成"叮咚"
+function beepMessageSound(){
+  try{
+    if(!messageSoundCtx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return; // 环境不支持
+      messageSoundCtx = new AC();
+    }
+    const ctx = messageSoundCtx;
+    if(ctx.state === 'suspended') ctx.resume().catch(()=>{});
+    const t0 = ctx.currentTime;
+    // 音符：先高（E6≈1318.5Hz）后低（B5≈987.8Hz），各 0.16s，间隔 30ms
+    const notes = [
+      { f: 1318.5, t: t0,        d: 0.16, v: 0.28 },
+      { f: 987.8,  t: t0 + 0.19, d: 0.20, v: 0.24 }
+    ];
+    for(const n of notes){
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(n.f, n.t);
+      // 指数衰减包络：10ms 起音 + 快速衰减，避免爆音
+      gain.gain.setValueAtTime(0.0001, n.t);
+      gain.gain.exponentialRampToValueAtTime(n.v, n.t + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.0001, n.t + n.d);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(n.t);
+      osc.stop(n.t + n.d + 0.02);
+    }
+  }catch(e){ /* 播放失败静默 */ }
+}
+
 function playMessageSound(){
-  // 占位：后续可替换为真实提示音
-  // const audio = new Audio('assets/sounds/message.mp3'); audio.play().catch(()=>{});
+  // 开关控制：读取当前设置，仅在开启时发声
+  if(!settings.sound) return;
+  // 节流防叠加：400ms 内只响一声（多条消息连发不叠加过吵）
+  const now = Date.now();
+  if(now - lastMessageSoundAt < 400) return;
+  lastMessageSoundAt = now;
+  unlockMessageSound();
+  beepMessageSound();
+}
+
+// 设置面板中的"试听"：无视开关，强制播放一次
+function previewMessageSound(){
+  lastMessageSoundAt = 0; // 重置节流，保证能听到
+  unlockMessageSound();
+  beepMessageSound();
 }
 
 /* ===== 设置面板 ===== */
@@ -4284,6 +4365,10 @@ document.addEventListener('click', (e) => {
     closeNotif();
   }
 });
+
+// 首次用户手势解锁消息提示音（兼容浏览器自动播放限制）
+document.addEventListener('pointerdown', unlockMessageSound, { once:true });
+document.addEventListener('keydown', unlockMessageSound, { once:true });
 
 // 收藏按钮点击交互动画
 const favBtn = document.querySelector('.info-actions .act-btn[title="收藏"]');
