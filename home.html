@@ -214,7 +214,9 @@ footer .links a:hover{color:#fff}
   backdrop-filter:blur(8px);
 }
 .scene2-img{
-  height:340px;border-radius:14px;overflow:hidden;
+  width:100%;
+  aspect-ratio:16/9;             /* 与图片原始比例一致：完整展示，不裁切 */
+  border-radius:14px;overflow:hidden;
   background-image:url("assets/images/scene2.jpg");
   background-size:cover;background-position:center;
   opacity:.85;filter:saturate(1.05);
@@ -227,7 +229,8 @@ footer .links a:hover{color:#fff}
   max-width:1180px;
 }
 .scene3 .scene3-img{
-  height:340px;                    /* 与 scene2-img 一致 */
+  width:100%;
+  aspect-ratio:16/9;             /* 与 scene2 一致：按原始比例完整展示 */
   border-radius:14px;overflow:hidden;
   background-image:url("assets/images/scene3.jpg");
   background-size:cover;background-position:center;
@@ -279,7 +282,7 @@ footer .links a:hover{color:#fff}
   .hero h1{letter-spacing:2px}
   .modal{padding:22px 20px}
   .scene2{grid-template-columns:1fr;gap:24px;margin:24px 16px;padding:24px 22px}
-  .scene2-img{height:220px}
+  .scene2-img{aspect-ratio:16/9}
   .scene3{grid-template-columns:1fr;gap:24px;max-width:100%}
 }
 </style>
