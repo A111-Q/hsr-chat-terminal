@@ -413,6 +413,11 @@ body{
   font-family:inherit; font-size:14px; color:var(--ink); outline:none;
 }
 .form-row input:focus, .form-row select:focus{ border-color:var(--accent); }
+/* switch-label 覆盖 .form-row label 的块级/大写样式，保持开关内联横排 */
+.form-row label.switch-label{
+  display:inline-flex; align-items:center; gap:8px;
+  margin-bottom:0; text-transform:none; letter-spacing:0;
+}
 .form-row .hint{
   font-size:12px; color:var(--ink-muted); margin-top:5px; line-height:1.5;
 }
@@ -2174,11 +2179,13 @@ input[type="range"]{ padding:0; height:6px; accent-color:var(--accent); }
       <!-- 交互体验 -->
       <div class="form-section">
         <h4>交互体验</h4>
-        <div class="form-row form-row-inline">
+        <div class="form-row">
           <label class="switch-label">
             <input id="cfgTyping" type="checkbox" checked="">
             <span>打字机动画</span>
           </label>
+        </div>
+        <div class="form-row">
           <label class="switch-label">
             <input id="cfgSound" type="checkbox">
             <span>消息提示音</span>
@@ -2877,8 +2884,8 @@ function escapeHtml(str){
 }
 
 function renderBubbleText(bubble, text){
-  // 渲染层兜底：禁止弯引号“”出现，统一替换为「」（覆盖历史消息中的残留）
-  const safe = String(text).replace(/[“”]/g, (c) => c === '“' ? '「' : '」');
+  // 渲染层兜底：禁止所有引号符号（“”「」『』"')出现，直接删除（覆盖历史消息残留）
+  const safe = String(text).replace(/[“”「」『』"']/g, '');
   // 保留换行（balanceLineBreaks 已在文本层插好 \n），将 URL 转为可点击链接
   bubble.innerHTML = escapeHtml(safe)
     .replace(/\n/g, '<br>')
@@ -3142,8 +3149,8 @@ function cleanReplyText(text){
     .replace(/[（(][^（）()]*[）)]/g, '')
     // 去除方括号形式的描写/旁白【…】
     .replace(/【[^】]*】/g, '')
-    // 禁止弯引号“”：统一替换为游戏风格「」（保持引用语义，且不出现禁止符号）
-    .replace(/[“”]/g, (c) => c === '“' ? '「' : '」')
+    // 禁止所有引号符号出现（“”「」『』""）：直接删除，不留任何引用标记
+    .replace(/[“”「」『』"']/g, '')
     // 去除角色名前缀，如 "流萤：" / "流萤说："
     .replace(new RegExp('^\\s*' + escapeRegExp(charName) + '\\s*(?:说|说道|回答|笑道)?\\s*[:：]\\s*', 'i'), '')
     // 去除 "作为 xxx，" / "我是 xxx，" 等 AI 常见前缀
