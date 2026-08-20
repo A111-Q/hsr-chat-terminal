@@ -3654,63 +3654,51 @@ async function send(opts={}){
   }
 }
 
-/* ===== 消息提示音（QQ 风格"叮咚"双音，WebAudio 合成，无需外部资源） =====
+/* ===== 消息提示音（播放 assets/sounds/msg.wav，QQ 风格提示音素材） =====
  * 设计要点：
- *  1. 双音（先高后低）短促清脆，总长 <0.5s，模拟 QQ 提示音辨识度；
- *  2. 通过 WebAudio 振荡器实时合成：无音频文件加载、无跨域/缓存问题，
- *     任何部署方式（file:// / https）都稳定可用；
+ *  1. 使用共享 Audio 实例复用播放，避免频繁创建/加载延迟；
+ *  2. 首次用户手势（点击/键盘）静默预播解锁，兼容浏览器自动播放限制；
  *  3. 节流防叠加：同一时刻（400ms 内）只允许一声，多条消息连发不吵；
- *  4. 兼容自动播放限制：首次用户手势后解锁 AudioContext；
- *  5. 音量适中（0.5 峰值），指数衰减包络避免爆音。
+ *  4. 音量 0.8，时长由素材本身决定（msg.wav ≈0.8s 短促双音）。
  */
-let messageSoundCtx = null;          // 惰性创建的 AudioContext
-let messageSoundUnlocked = false;    // 是否已通过用户手势解锁
-let lastMessageSoundAt = 0;          // 上次发声时间戳（节流）
+let messageAudio = null;           // 共享 Audio 实例（惰性创建）
+let messageSoundUnlocked = false;  // 是否已通过用户手势解锁
+let lastMessageSoundAt = 0;        // 上次发声时间戳（节流）
+
+function getMessageAudio(){
+  if(!messageAudio){
+    messageAudio = new Audio('assets/sounds/msg.wav');
+    messageAudio.preload = 'auto';
+    messageAudio.volume = 0.8;
+  }
+  return messageAudio;
+}
 
 // 在任何用户手势（点击/键盘）上调用一次，解锁自动播放限制
 function unlockMessageSound(){
   if(messageSoundUnlocked) return;
   messageSoundUnlocked = true;
   try{
-    if(!messageSoundCtx){
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if(AC) messageSoundCtx = new AC();
-    }
-    if(messageSoundCtx && messageSoundCtx.state === 'suspended'){
-      messageSoundCtx.resume().catch(()=>{});
+    const a = getMessageAudio();
+    // 手势内静默预播一次，解锁后续自动播放（立即暂停复位，不产生响声）
+    a.volume = 0;
+    const p = a.play();
+    if(p && p.then){
+      p.then(() => { a.pause(); a.currentTime = 0; a.volume = 0.8; })
+       .catch(() => { a.volume = 0.8; });
+    } else {
+      a.volume = 0.8;
     }
   }catch(e){ /* 环境不支持则静默 */ }
 }
 
-// 实际发声：WebAudio 合成"叮咚"
+// 实际发声：播放提示音素材
 function beepMessageSound(){
   try{
-    if(!messageSoundCtx){
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if(!AC) return; // 环境不支持
-      messageSoundCtx = new AC();
-    }
-    const ctx = messageSoundCtx;
-    if(ctx.state === 'suspended') ctx.resume().catch(()=>{});
-    const t0 = ctx.currentTime;
-    // 音符：先高（E6≈1318.5Hz）后低（B5≈987.8Hz），各 0.16s，间隔 30ms
-    const notes = [
-      { f: 1318.5, t: t0,        d: 0.16, v: 0.28 },
-      { f: 987.8,  t: t0 + 0.19, d: 0.20, v: 0.24 }
-    ];
-    for(const n of notes){
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(n.f, n.t);
-      // 指数衰减包络：10ms 起音 + 快速衰减，避免爆音
-      gain.gain.setValueAtTime(0.0001, n.t);
-      gain.gain.exponentialRampToValueAtTime(n.v, n.t + 0.012);
-      gain.gain.exponentialRampToValueAtTime(0.0001, n.t + n.d);
-      osc.connect(gain).connect(ctx.destination);
-      osc.start(n.t);
-      osc.stop(n.t + n.d + 0.02);
-    }
+    const a = getMessageAudio();
+    a.currentTime = 0;
+    const p = a.play();
+    if(p && p.catch) p.catch(()=>{});
   }catch(e){ /* 播放失败静默 */ }
 }
 
