@@ -41,7 +41,7 @@ body{
   position:absolute;inset:0;z-index:0;
   background-image:url("assets/images/cover.jpg");
   background-size:cover;background-position:center;
-  opacity:.38;
+  opacity:.45;
   filter:saturate(1.12) contrast(1.05);
 }
 /* 顶部/底部蒙层：保证文字可读 + 与下半部分衔接过渡 */
@@ -57,8 +57,7 @@ body{
 }
 .hero-inner{position:relative;z-index:2;max-width:880px}
 
-/* 品牌：星穹铁道 + 英文 */
-.brand{font-family:var(--font-title);font-size:clamp(30px,5vw,52px);letter-spacing:12px;font-weight:700;margin-bottom:6px;color:#fff}
+/* 品牌：英文标语 */
 .brand-en{font-family:var(--font-body);font-size:clamp(11px,1.4vw,14px);letter-spacing:8px;color:rgba(255,255,255,.72);margin-bottom:52px;text-transform:uppercase}
 .brand-en::before,.brand-en::after{content:"";display:inline-block;vertical-align:middle;width:34px;height:1px;background:rgba(255,255,255,.35);margin:0 14px}
 
@@ -203,7 +202,6 @@ footer a:hover{color:#fff}
 <section class="hero">
   <div class="bg" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="brand">星穹铁道</div>
     <div class="brand-en">Honkai Star Rail</div>
     <h1>
       <span class="line">踏上星穹列车</span>
@@ -244,7 +242,7 @@ footer a:hover{color:#fff}
 </section>
 
 <footer>
-  <div>© 上海米哈游网络科技股份有限公司（miHoYo）· 角色归 HoYoverse 所有 · 本项目为非商业同人作品</div>
+  <div>© 上海米哈游网络科技股份有限公司（miHoYo）· 角色归 miHoYo 所有 · 本项目为非商业同人作品</div>
   <div style="margin-top:10px"><a href="https://github.com/A111-Q/hsr-chat-terminal" target="_blank" rel="noopener">GitHub 仓库</a></div>
 </footer>
 
@@ -271,7 +269,7 @@ footer a:hover{color:#fff}
         <li><b>消息操作</b>：复制 / 删除 / 重发 / 重新生成 / 提示音</li>
       </ul>
       <h3>免责声明</h3>
-      <p>本项目为非商业同人作品，仅用于学习交流。角色设定与素材版权归米哈游（HoYoverse）及《Fate》系列版权方所有。请勿用于商业用途。</p>
+      <p>本项目为非商业同人作品，仅用于学习交流。角色设定与素材版权归米哈游（miHoYo）及《Fate》系列版权方所有。请勿用于商业用途。</p>
       <p style="margin-top:10px">更多说明见 <a class="gh-link" href="https://github.com/A111-Q/hsr-chat-terminal" target="_blank" rel="noopener">GitHub 仓库</a>。</p>
     </div>
   </div>
