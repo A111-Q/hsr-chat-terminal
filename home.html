@@ -4,17 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <title>星穹铁道 · 角色聊天终端</title>
-<link rel="icon" href="assets/favicon.png">
+<link rel="icon" href="assets/logo.png">
 <style>
-/* 字体定义 */
-@font-face{font-family:"DYN";src:url("assets/fonts/抖音美好体.otf") format("opentype");font-display:swap}
+/* 字体定义：标题=青鸟华光简粗黑，正文=抖音美好体 */
 @font-face{font-family:"TITLE";src:url("assets/fonts/QingNiaoHuaGuangJianCuHei-1.ttf") format("truetype");font-display:swap}
+@font-face{font-family:"DYN";src:url("assets/fonts/抖音美好体.otf") format("opentype");font-display:swap}
 
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
   --font-title:"TITLE","DYN","Microsoft YaHei",sans-serif;
   --font-body:"DYN","Microsoft YaHei",sans-serif;
   --ink:#fff;
+  --panel-bg:rgba(10,4,32,.88);
 }
 html,body{min-height:100%}
 body{
@@ -27,7 +28,7 @@ body{
   height:100vh;
 }
 
-/* 沉浸式背景：用户提供的角色群像图，透明度调低 */
+/* 沉浸式背景：角色群像图，透明度调低 */
 .bg{
   position:fixed;inset:0;z-index:0;
   background-image:url("assets/images/cover.jpg");
@@ -37,7 +38,6 @@ body{
   opacity:.35;
   filter:saturate(1.1) contrast(1.05);
 }
-/* 顶部/底部蒙层：让文字区域可读 */
 .bg-shade-top,.bg-shade-bottom{
   position:fixed;left:0;right:0;z-index:1;pointer-events:none;
   height:30vh;
@@ -64,6 +64,7 @@ body{
 .topbar nav a{
   color:rgba(255,255,255,.85);text-decoration:none;
   font-size:14px;letter-spacing:1px;transition:color .2s;
+  cursor:pointer;background:none;border:none;font-family:inherit;
 }
 .topbar nav a:hover{color:#fff}
 .topbar nav .enter{
@@ -142,14 +143,74 @@ footer .links a{
 }
 footer .links a:hover{color:#fff}
 
+/* 弹窗（关于 / 赞助） */
+.modal-mask{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,.55);
+  display:none;align-items:center;justify-content:center;
+  padding:24px;
+}
+.modal-mask.show{display:flex}
+.modal{
+  width:min(560px,100%);
+  max-height:min(76vh,600px);
+  overflow:auto;
+  background:var(--panel-bg);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:18px;
+  padding:28px 32px;
+  box-shadow:0 24px 64px rgba(0,0,0,.5);
+  position:relative;
+}
+.modal h2{
+  font-family:var(--font-title);
+  font-size:20px;font-weight:700;letter-spacing:2px;
+  margin-bottom:18px;
+}
+.modal .close{
+  position:absolute;top:14px;right:18px;
+  width:30px;height:30px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);background:transparent;
+  color:#fff;font-size:15px;cursor:pointer;line-height:1;
+  transition:background .2s;
+}
+.modal .close:hover{background:rgba(255,255,255,.15)}
+.modal .body{font-size:13.5px;line-height:1.85;color:rgba(255,255,255,.88)}
+.modal .body h3{
+  font-family:var(--font-title);
+  font-size:15px;font-weight:700;letter-spacing:1px;
+  margin:18px 0 8px;color:#fff;
+}
+.modal .body h3:first-child{margin-top:0}
+.modal .body ul{list-style:none;padding:0}
+.modal .body ul li{padding:5px 0 5px 16px;position:relative}
+.modal .body ul li::before{
+  content:"";position:absolute;left:0;top:12px;
+  width:5px;height:5px;border-radius:50%;background:#9a7eff;
+}
+.modal .body p{margin:6px 0}
+.modal .body .gh-link{
+  color:#9a7eff;text-decoration:none;border-bottom:1px solid rgba(154,126,255,.4);
+}
+.modal .body .gh-link:hover{color:#b4a3ff}
+/* 赞助二维码 */
+.sponsor-box{text-align:center;padding:8px 0 4px}
+.sponsor-box img{
+  width:180px;height:180px;border-radius:12px;
+  background:#fff;padding:8px;margin-bottom:14px;
+}
+.sponsor-box p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.8}
+
 /* 适配 */
 @media (max-width:720px){
   .topbar{padding:18px 24px}
   .hero{padding:0 24px}
   footer{padding:18px 24px;flex-direction:column;gap:8px}
   .topbar nav{gap:14px}
-  .topbar nav a:not(.enter){display:none}
+  .topbar nav a:not(.enter):not(.keep){display:none}
   .hero h1{letter-spacing:2px}
+  .modal{padding:22px 20px}
 }
 </style>
 </head>
@@ -162,9 +223,9 @@ footer .links a:hover{color:#fff}
 <header class="topbar">
   <div class="brand">星穹铁道<span class="sub">HSR · AI CHAT TERMINAL</span></div>
   <nav>
-    <a href="preview.html">关于</a>
-    <a href="preview.html">角色</a>
-    <a href="preview.html">赞助</a>
+    <a onclick="openModal('about')">关于</a>
+    <a onclick="openModal('sponsor')">赞助</a>
+    <a href="https://github.com/A111-Q/hsr-chat-terminal" target="_blank" rel="noopener">GitHub</a>
     <a class="enter" href="preview.html">进入聊天</a>
   </nav>
 </header>
@@ -177,7 +238,7 @@ footer .links a:hover{color:#fff}
   </h1>
   <p class="lede">
     基于《崩坏：星穹铁道》的 AI 角色聊天终端 —— 49 位角色，多模型支持，RAG 知识库，
-    每句话都忠于原作。打开浏览器即可开与角色说话。
+    每句话都忠于原作。打开浏览器即可与角色对话。
   </p>
   <a href="preview.html" class="cta">进入聊天终端</a>
 </main>
@@ -185,10 +246,70 @@ footer .links a:hover{color:#fff}
 <footer>
   <div>© 上海米哈游网络科技股份有限公司（miHoYo）· 角色归 HoYoverse 所有 · 本项目为非商业同人作品</div>
   <div class="links">
-    <a href="preview.html">预览</a>
     <a href="https://github.com/A111-Q/hsr-chat-terminal" target="_blank" rel="noopener">GitHub</a>
   </div>
 </footer>
+
+<!-- 关于弹窗：项目简介（摘自 GitHub README） -->
+<div class="modal-mask" id="modal-about" onclick="if(event.target===this)closeModal('about')">
+  <div class="modal">
+    <button class="close" onclick="closeModal('about')">✕</button>
+    <h2>关于本项目</h2>
+    <div class="body">
+      <p>基于《崩坏：星穹铁道》角色的 AI 聊天网页终端，支持 <b>49 位角色</b>（含 4 位 Fate 联动）。单文件前端，无需安装任何依赖，直接打开即用。</p>
+
+      <h3>快速开始</h3>
+      <ul>
+        <li>双击打开 <code>preview.html</code>（推荐 Chrome / Edge 等现代浏览器）</li>
+        <li>点右上角 <b>API</b> → 选服务商（DeepSeek 等）填 Key，测试通过后注入即可</li>
+        <li>使用前必须配置 API 大模型，未配置时发送消息会提示前往配置</li>
+      </ul>
+
+      <h3>功能特性</h3>
+      <ul>
+        <li><b>49 位角色</b>：8 位深度人设 + 41 位基础人设 + 4 位 Fate 联动</li>
+        <li><b>第一人称沉浸对话</b>：以「开拓者」身份与角色交流</li>
+        <li><b>RAG 知识库</b>：每角色 13 字段人设 + 2273 条官方真实台词样本</li>
+        <li><b>多模型支持</b>：DeepSeek / 豆包 / 通义千问 / 智谱 / Kimi / 硅基流动 / OpenAI</li>
+        <li><b>音乐播放器</b>：内置 HOYO-MiX「InsIDE」专辑 4 首单曲</li>
+        <li><b>消息操作</b>：复制 / 删除 / 重发 / 重新生成 / 提示音</li>
+      </ul>
+
+      <h3>免责声明</h3>
+      <p>本项目为非商业同人作品，仅用于学习交流。角色设定与素材版权归米哈游（HoYoverse）及《Fate》系列版权方所有。请勿用于商业用途。</p>
+      <p style="margin-top:10px">更多说明见 <a class="gh-link" href="https://github.com/A111-Q/hsr-chat-terminal" target="_blank" rel="noopener">GitHub 仓库</a>。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 赞助弹窗 -->
+<div class="modal-mask" id="modal-sponsor" onclick="if(event.target===this)closeModal('sponsor')">
+  <div class="modal">
+    <button class="close" onclick="closeModal('sponsor')">✕</button>
+    <h2>赞助支持</h2>
+    <div class="body sponsor-box">
+      <img src="assets/sponsor/qrcode.png" alt="赞赏码">
+      <p>您的支持是我们持续更新的动力。<br>感谢您的赞助与鼓励～</p>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(id){
+  const el = document.getElementById('modal-' + id);
+  if(el) el.classList.add('show');
+}
+function closeModal(id){
+  const el = document.getElementById('modal-' + id);
+  if(el) el.classList.remove('show');
+}
+// Esc 关闭
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.modal-mask.show').forEach(m => m.classList.remove('show'));
+  }
+});
+</script>
 
 </body>
 </html>
