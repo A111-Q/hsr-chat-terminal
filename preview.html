@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" data-theme="light" class=""><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1353,8 +1353,8 @@ input[type="range"]{ padding:0; height:6px; accent-color:var(--accent); }
   text-align:center; margin-top:12px;
   font-size:12px; color:var(--ink-muted);
 }
-
-</style></head>
+</style>
+</head>
 <body style="--accent: rgb(255,180,220); --accent-soft: rgba(255,180,220,.75); --accent-pale: rgba(255,180,220,.12); --accent-border: rgba(255,180,220,.18); --accent-glow: rgba(255,180,220,.10);">
 
 <div class="app-bar">
@@ -1392,9 +1392,606 @@ input[type="range"]{ padding:0; height:6px; accent-color:var(--accent); }
         <span class="conv-title-label">历史对话</span>
         <button class="conv-new" onclick="newConversation()" title="开启新对话">＋ 新对话</button>
       </div>
-      <div class="conv-list" id="convList"></div>
+      <div class="conv-list" id="convList"><div class="conv-item active" data-convid="c_1787202574053_175im" onclick="switchConversation('c_1787202574053_175im')">
+      <div class="conv-text">
+        <div class="conv-title">新对话</div>
+        <div class="conv-time">13:09</div>
+      </div>
+      <div class="conv-actions">
+        <button title="重命名" onclick="event.stopPropagation();renameConversation('c_1787202574053_175im')">✎</button>
+        <button class="danger" title="删除" onclick="event.stopPropagation();deleteConversation('c_1787202574053_175im')">🗑</button>
+      </div>
+    </div></div>
     </div>
-    <div class="char-list" id="charList"></div>
+    <div class="char-list" id="charList">
+    <div class="char-item active" data-id="xilian" onclick="switchChar('xilian')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/昔涟.png" alt="昔涟" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">昔涟</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是昔涟</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="liuying" onclick="switchChar('liuying')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/流萤.png" alt="流萤" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">流萤</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">我正好也在想你会什么时候出现呢</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="yaoguang" onclick="switchChar('yaoguang')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/爻光.png" alt="爻光" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">爻光</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是爻光</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="zhigengniao" onclick="switchChar('zhigengniao')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/知更鸟.png" alt="知更鸟" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">知更鸟</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是知更鸟</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="feiying" onclick="switchChar('feiying')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/绯英.png" alt="绯英" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">绯英</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是绯英</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="xiedie" onclick="switchChar('xiedie')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/遐蝶.png" alt="遐蝶" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">遐蝶</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是遐蝶</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="ruanmei" onclick="switchChar('ruanmei')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/阮•梅.png" alt="阮·梅" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">阮·梅</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是阮·梅</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="fengjian" onclick="switchChar('fengjian')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/风堇.png" alt="风堇" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">风堇</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是风堇</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c00" onclick="switchChar('c00')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/Archer.png" alt="Archer" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">Archer</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是Archer</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c01" onclick="switchChar('c01')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/Saber.png" alt="Saber" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">Saber</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是Saber</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c02" onclick="switchChar('c02')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/万敌.png" alt="万敌" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">万敌</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是万敌</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c03" onclick="switchChar('c03')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/三月七.png" alt="三月七" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">三月七</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是三月七</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c04" onclick="switchChar('c04')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/丹恒.png" alt="丹恒" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">丹恒</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是丹恒</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c05" onclick="switchChar('c05')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/云璃.png" alt="云璃" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">云璃</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是云璃</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c06" onclick="switchChar('c06')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/佩拉.png" alt="佩拉" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">佩拉</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是佩拉</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c07" onclick="switchChar('c07')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/克拉拉.png" alt="克拉拉" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">克拉拉</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是克拉拉</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c08" onclick="switchChar('c08')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/刻律德菈.jpg" alt="刻律德菈" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">刻律德菈</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是刻律德菈</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c09" onclick="switchChar('c09')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/卡芙卡.png" alt="卡芙卡" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">卡芙卡</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是卡芙卡</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c10" onclick="switchChar('c10')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/吉尔伽美什.png" alt="吉尔伽美什" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">吉尔伽美什</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是吉尔伽美什</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c11" onclick="switchChar('c11')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/大丽花.png" alt="大丽花" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">大丽花</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是大丽花</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c12" onclick="switchChar('c12')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/大黑塔.png" alt="大黑塔" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">大黑塔</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是大黑塔</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c13" onclick="switchChar('c13')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/姬子•启行.png" alt="姬子•启行" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">姬子•启行</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是姬子•启行</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c14" onclick="switchChar('c14')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/布洛妮娅.png" alt="布洛妮娅" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">布洛妮娅</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是布洛妮娅</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c15" onclick="switchChar('c15')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/希儿.png" alt="希儿" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">希儿</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是希儿</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c16" onclick="switchChar('c16')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/希露瓦.png" alt="希露瓦" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">希露瓦</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是希露瓦</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c17" onclick="switchChar('c17')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/托帕.png" alt="托帕" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">托帕</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是托帕</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c18" onclick="switchChar('c18')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/星期日.jpg" alt="星期日" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">星期日</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是星期日</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c19" onclick="switchChar('c19')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/景元.png" alt="景元" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">景元</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是景元</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c20" onclick="switchChar('c20')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/杰帕德.png" alt="杰帕德" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">杰帕德</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是杰帕德</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c21" onclick="switchChar('c21')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/海瑟音.png" alt="海瑟音" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">海瑟音</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是海瑟音</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c22" onclick="switchChar('c22')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/火花.png" alt="火花" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">火花</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是火花</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c23" onclick="switchChar('c23')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/灵砂.png" alt="灵砂" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">灵砂</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是灵砂</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c24" onclick="switchChar('c24')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/瓦尔特.png" alt="瓦尔特" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">瓦尔特</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是瓦尔特</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c25" onclick="switchChar('c25')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/白厄.png" alt="白厄" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">白厄</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是白厄</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c26" onclick="switchChar('c26')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/砂金.png" alt="砂金" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">砂金</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是砂金</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c27" onclick="switchChar('c27')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/符玄.png" alt="符玄" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">符玄</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是符玄</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c28" onclick="switchChar('c28')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/缇宝.png" alt="缇宝" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">缇宝</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是缇宝</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c29" onclick="switchChar('c29')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/翡翠.png" alt="翡翠" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">翡翠</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是翡翠</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c30" onclick="switchChar('c30')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/艾丝妲.png" alt="艾丝妲" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">艾丝妲</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是艾丝妲</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c31" onclick="switchChar('c31')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/藿藿.png" alt="藿藿" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">藿藿</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是藿藿</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c32" onclick="switchChar('c32')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/赛飞儿.jpg" alt="赛飞儿" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">赛飞儿</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是赛飞儿</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c33" onclick="switchChar('c33')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/远坂凛.png" alt="远坂凛" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">远坂凛</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是远坂凛</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c34" onclick="switchChar('c34')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/那刻夏.png" alt="那刻夏" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">那刻夏</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是那刻夏</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c35" onclick="switchChar('c35')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/银枝.png" alt="银枝" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">银枝</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是银枝</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c36" onclick="switchChar('c36')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/银狼LV.999.png" alt="银狼LV.999" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">银狼LV.999</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是银狼LV.999</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c37" onclick="switchChar('c37')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/镜流.png" alt="镜流" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">镜流</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是镜流</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c38" onclick="switchChar('c38')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/长夜月.png" alt="长夜月" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">长夜月</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是长夜月</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c39" onclick="switchChar('c39')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/黄泉.png" alt="黄泉" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">黄泉</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是黄泉</div>
+      </div>
+    </div>
+    <div class="char-item " data-id="c40" onclick="switchChar('c40')">
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/avatars/character-avatar/黑塔.png" alt="黑塔" style="--avatar-scale:1; --avatar-x:0px; --avatar-y:0px;">
+      </div>
+      <div class="info">
+        <div class="name-row">
+          <div class="name">黑塔</div>
+          <div class="time">18:14</div>
+        </div>
+        <div class="preview">你好，开拓者。我是黑塔</div>
+      </div>
+    </div></div>
   </aside>
 
   <!-- 中间对话区 -->
@@ -1406,14 +2003,22 @@ input[type="range"]{ padding:0; height:6px; accent-color:var(--accent); }
         <div class="status">在线</div>
       </div>
       <div class="tools">
-        
-        
-        <button class="tool-btn" title="主页"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></button>
       </div>
       <button class="sponsor" onclick="openSponsor()">赞助</button>
     </div>
 
-    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-messages" id="chatMessages"><div class="date-divider"><span>18:14 </span></div><div class="message" data-index="0" data-who="char" data-date="18:14">
+      <img class="avatar" src="assets/avatars/character-avatar/%E6%98%94%E6%B6%9F.png" alt="昔涟" onerror="this.src='assets/avatars/user-avatar/%E5%BC%80%E6%8B%93%E8%80%85-%E5%A5%B3.png'">
+      <div class="content">
+        <div class="author">昔涟<span class="time">18:14</span></div>
+        <div class="bubble" style="font-size: 15px;">你好，开拓者。我是昔涟</div>
+        <div class="msg-actions">
+          <button class="msg-action" data-action="copy" title="复制">复制</button>
+          <button class="msg-action" data-action="regenerate" title="重新生成">重新生成</button>
+          
+          <button class="msg-action" data-action="recall" title="撤回（QQ 风格）">撤回</button>
+        </div>
+      </div></div></div>
 
     <div class="chat-input-bar">
       <div class="chat-input-tools">
@@ -1440,10 +2045,29 @@ input[type="range"]{ padding:0; height:6px; accent-color:var(--accent); }
     </div>
     <div class="info-body">
       <div class="info-avatar-wrap">
-        <div class="info-card" id="infoCard"></div>
+        <div class="info-card" id="infoCard">
+  <div class="wiki-card five-star" data-id="xilian" style="--theme-color:rgba(255,180,220,.2);
+           --portrait-scale:429%;
+           --portrait-offset:-312px;
+           --portrait-offset-lg:-351px;
+           --portrait-vpos:50%;
+           --portrait-xoffset:-6px;
+           --portrait-xoffset-lg:-7px">
+    <div class="glow"></div>
+    <div class="element-icon"><img src="assets/elements/75px-冰.png" alt="冰"></div>
+    <div class="path-icon"><img src="assets/paths/75px-记忆-白.png" alt="记忆"></div>
+    <div class="portrait"><img src="assets/characters/昔涟.png" alt="昔涟"></div>
+    <div class="portrait-fade"></div>
+    <div class="rarity-bar"></div>
+    <div class="info">
+      <div class="name-cn">昔涟</div>
+      <div class="rarity"><img src="assets/rarity/5star.png" alt="5星"></div>
+    </div>
+  </div></div>
         <div class="info-name">
-          <div class="name" id="infoName"></div>
-          <div class="school" id="infoSchool"></div>
+          <div class="name" id="infoName">昔涟</div>
+          <div class="school" id="infoSchool">
+    <img src="assets/elements/75px-冰.png" alt="冰"><span>冰</span><span>·</span><img src="assets/paths/75px-记忆-白.png" alt="记忆"><span>记忆</span></div>
         </div>
         <div class="info-actions">
           <button class="act-btn" title="收藏"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
@@ -1455,26 +2079,28 @@ input[type="range"]{ padding:0; height:6px; accent-color:var(--accent); }
       <div class="info-section">
         <h4>基本信息</h4>
         <div class="info-grid">
-          <div class="info-cell"><div class="label">稀有度</div><div class="value icon-value rarity-icon" id="infoRarity"></div></div>
-          <div class="info-cell"><div class="label">属性</div><div class="value icon-value" id="infoEl"></div></div>
-          <div class="info-cell"><div class="label">命途</div><div class="value icon-value" id="infoPath"></div></div>
+          <div class="info-cell"><div class="label">稀有度</div><div class="value icon-value rarity-icon" id="infoRarity"><img src="assets/rarity/5star.png" alt="5星"></div></div>
+          <div class="info-cell"><div class="label">属性</div><div class="value icon-value" id="infoEl"><img src="assets/elements/75px-冰.png" alt="冰"></div></div>
+          <div class="info-cell"><div class="label">命途</div><div class="value icon-value" id="infoPath"><img src="assets/paths/75px-记忆-白.png" alt="记忆"></div></div>
           <div class="info-cell"><div class="label">版本</div><div class="value">3.4</div></div>
         </div>
       </div>
 
       <div class="info-section">
         <h4>标签</h4>
-        <div class="tags" id="infoTags"></div>
+        <div class="tags" id="infoTags"><span class="tag">专属效果</span><span class="tag">特殊能量</span><span class="tag">忆灵</span><span class="tag">特殊领域</span><span class="tag">开屏动画</span><span class="tag">秘技无受击</span><span class="tag">快速移动</span></div>
       </div>
 
       <div class="info-section">
         <h4>关于角色</h4>
-        <p class="info-desc" id="infoDesc"></p>
+        <p class="info-desc" id="infoDesc">流星划过夜空，生命的长河荡起涟漪，闪烁十三种光彩。
+哀丽秘榭的女儿，哺育「真我」的黄金裔，你要栽下记忆的种子，让往昔的花朵在明日绽放
+——「然后，一起写下不同以往的诗篇吧♪」</p>
       </div>
 
       <div class="info-section">
         <h4>角色台词</h4>
-        <div class="info-quote" id="infoQuote"></div>
+        <div class="info-quote" id="infoQuote"><p>「这是命运的邂逅吗，还是…久别重逢呢？真让人心跳加速呀，那…就像初遇时那样，再一次呼唤我『昔涟』，好吗？」</p><div class="source">—— 昔涟</div></div>
       </div>
 
       <div class="info-section" id="cotSection">
@@ -3632,8 +4258,11 @@ function closeHelp(){ document.getElementById('helpModal').classList.remove('sho
 function openSponsor(){ document.getElementById('sponsorModal').classList.add('show'); }
 function closeSponsor(){ document.getElementById('sponsorModal').classList.remove('show'); }
 function toggleHelpSection(h4){ h4.parentElement.classList.toggle('open'); }
+
 const helpModal = document.getElementById('helpModal');
-helpModal.addEventListener('click', (e) => { if(e.target === helpModal) closeHelp(); });
+if(helpModal){
+  helpModal.addEventListener('click', (e) => { if(e.target === helpModal) closeHelp(); });
+}
 
 // ===== 通知 / 更新日志浮层（原型） =====
 function toggleNotif(e){
@@ -4207,40 +4836,40 @@ window.addEventListener('storage', (e) => {
     </button>
     <div class="music-body">
       <div class="music-disc-wrap" id="musicDisc">
-        <button class="music-float-play" id="musicFloatPlay" title="播放/暂停" aria-label="播放或暂停">
+        <button class="music-float-play" id="musicFloatPlay" title="播放" aria-label="播放" aria-pressed="false">
           <svg id="musicFloatIcon" class="music-ctrl-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-            <path class="ic-play" d="M8 5v14l11-7z"/>
-            <g class="ic-pause"><rect x="6.4" y="5.5" width="3.6" height="13" rx="1.2"/><rect x="14" y="5.5" width="3.6" height="13" rx="1.2"/></g>
+            <path class="ic-play" d="M8 5v14l11-7z"></path>
+            <g class="ic-pause"><rect x="6.4" y="5.5" width="3.6" height="13" rx="1.2"></rect><rect x="14" y="5.5" width="3.6" height="13" rx="1.2"></rect></g>
           </svg>
         </button>
       </div>
 
       <div class="music-info">
         <div class="music-album-tag"><span class="dot"></span>4 TRACKS · HOYO-MiX</div>
-        <h3 class="music-title" id="musicTitle">—</h3>
-        <p class="music-artist"><span class="pip">♪</span><span id="musicArtist">知更鸟 · Chevy</span></p>
+        <h3 class="music-title" id="musicTitle">若我不曾见过太阳</h3>
+        <p class="music-artist"><span class="pip">♪</span><span id="musicArtist">知更鸟 · HOYO-MiX · Chevy</span></p>
 
         <div class="music-progress">
           <div class="music-seek-track" id="musicSeekTrack">
-            <div class="music-seek-buffer" id="musicSeekBuffer"></div>
+            <div class="music-seek-buffer" id="musicSeekBuffer" style="width: 100%;"></div>
             <div class="music-seek-tip" id="musicSeekTip">0:00</div>
-            <input id="musicSeek" type="range" min="0" max="100" value="0" step="0.1" aria-label="播放进度">
+            <input id="musicSeek" type="range" min="0" max="100" value="0" step="0.1" aria-label="播放进度" style="--p: 3.3261482740416652%;">
           </div>
-          <span class="music-time" id="musicDur">0:00/0:00</span>
+          <span class="music-time" id="musicDur">0:04/2:25</span>
         </div>
 
         <div class="music-controls">
           <button class="music-ctrl" id="musicPrev" title="上一首" aria-label="上一首">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M6 6h2v12H6zM9.5 12l8.5 6V6z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M6 6h2v12H6zM9.5 12l8.5 6V6z"></path></svg>
           </button>
-          <button class="music-ctrl play" id="musicPlay" title="播放/暂停" aria-label="播放或暂停">
+          <button class="music-ctrl play" id="musicPlay" title="播放（空格键）" aria-label="播放" aria-pressed="false">
             <svg id="musicPlayIcon" class="music-ctrl-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-              <path class="ic-play" d="M8 5v14l11-7z"/>
-              <g class="ic-pause"><rect x="6.4" y="5.5" width="3.6" height="13" rx="1.2"/><rect x="14" y="5.5" width="3.6" height="13" rx="1.2"/></g>
+              <path class="ic-play" d="M8 5v14l11-7z"></path>
+              <g class="ic-pause"><rect x="6.4" y="5.5" width="3.6" height="13" rx="1.2"></rect><rect x="14" y="5.5" width="3.6" height="13" rx="1.2"></rect></g>
             </svg>
           </button>
           <button class="music-ctrl" id="musicNext" title="下一首" aria-label="下一首">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 6h2v12h-2zM6 6v12l8.5-6z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 6h2v12h-2zM6 6v12l8.5-6z"></path></svg>
           </button>
         </div>
 
@@ -4255,12 +4884,13 @@ window.addEventListener('storage', (e) => {
           </div>
         </div>
 
-        <ul class="music-list" id="musicList"></ul>
+        <ul class="music-list" id="musicList"><li class="music-track active" data-idx="0"><span class="idx">01</span><span class="name">若我不曾见过太阳</span><span class="dur" data-dur="0">--:--</span></li><li class="music-track" data-idx="1"><span class="idx">02</span><span class="name">使一颗心免于哀伤</span><span class="dur" data-dur="1">--:--</span></li><li class="music-track" data-idx="2"><span class="idx">03</span><span class="name">希望有羽毛和翅膀</span><span class="dur" data-dur="2">--:--</span></li><li class="music-track" data-idx="3"><span class="idx">04</span><span class="name">在银河中孤独摇摆</span><span class="dur" data-dur="3">--:--</span></li></ul>
 
-        <p class="music-auto-hint" id="musicAutoHint">首次进入将自动播放，若被浏览器拦截请点下方播放键。</p>
+        <p class="music-auto-hint" id="musicAutoHint">正在自动播放 · 单击唱片区域可暂停</p>
       </div>
     </div>
   </div>
 </div>
+
 
 </body></html>
