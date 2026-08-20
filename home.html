@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>星穹铁道 · 角色聊天终端</title>
+<link rel="icon" href="assets/favicon.png">
+<style>
+/* 字体定义 */
+@font-face{font-family:"DYN";src:url("assets/fonts/抖音美好体.otf") format("opentype");font-display:swap}
+@font-face{font-family:"TITLE";src:url("assets/fonts/QingNiaoHuaGuangJianCuHei-1.ttf") format("truetype");font-display:swap}
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --font-title:"TITLE","DYN","Microsoft YaHei",sans-serif;
+  --font-body:"DYN","Microsoft YaHei",sans-serif;
+  --ink:#fff;
+}
+html,body{min-height:100%}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:#0a0420;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+  height:100vh;
+}
+
+/* 沉浸式背景：用户提供的角色群像图，透明度调低 */
+.bg{
+  position:fixed;inset:0;z-index:0;
+  background-image:url("assets/images/cover.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  opacity:.35;
+  filter:saturate(1.1) contrast(1.05);
+}
+/* 顶部/底部蒙层：让文字区域可读 */
+.bg-shade-top,.bg-shade-bottom{
+  position:fixed;left:0;right:0;z-index:1;pointer-events:none;
+  height:30vh;
+}
+.bg-shade-top{top:0;background:linear-gradient(180deg,#0a0420 0%,transparent 100%)}
+.bg-shade-bottom{bottom:0;background:linear-gradient(0deg,#0a0420 0%,transparent 100%)}
+
+/* 顶部导航 */
+.topbar{
+  position:relative;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 48px;
+}
+.brand{
+  font-family:var(--font-title);
+  font-size:22px;font-weight:700;letter-spacing:2px;
+  color:#fff;
+}
+.brand .sub{
+  display:block;font-family:var(--font-body);
+  font-size:11px;letter-spacing:3px;opacity:.6;margin-top:4px;
+}
+.topbar nav{display:flex;align-items:center;gap:28px}
+.topbar nav a{
+  color:rgba(255,255,255,.85);text-decoration:none;
+  font-size:14px;letter-spacing:1px;transition:color .2s;
+}
+.topbar nav a:hover{color:#fff}
+.topbar nav .enter{
+  padding:10px 22px;border-radius:24px;
+  background:rgba(255,255,255,.95);color:#0a0420;
+  font-weight:700;letter-spacing:2px;
+  transition:transform .2s,box-shadow .2s;
+}
+.topbar nav .enter:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,255,255,.25);
+}
+
+/* 中央内容区 */
+.hero{
+  position:relative;z-index:5;
+  display:flex;flex-direction:column;justify-content:center;
+  height:calc(100vh - 80px - 64px);
+  padding:0 48px;
+  max-width:880px;
+  margin:0 auto;
+}
+.hero .badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:20px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
+  font-family:var(--font-body);font-size:11px;letter-spacing:3px;
+  width:max-content;margin-bottom:24px;color:rgba(255,255,255,.85);
+}
+.hero .badge::before{content:"";width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff}
+.hero h1{
+  font-family:var(--font-title);
+  font-size:clamp(40px,7vw,76px);
+  font-weight:700;line-height:1.15;letter-spacing:4px;
+  margin-bottom:24px;
+}
+.hero h1 .line{
+  display:block;
+  background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.75) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .lede{
+  font-family:var(--font-body);
+  font-size:clamp(15px,1.6vw,18px);line-height:1.9;
+  color:rgba(255,255,255,.85);max-width:600px;
+  margin-bottom:36px;
+}
+.hero .cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 36px;border-radius:28px;
+  background:linear-gradient(135deg,#fff 0%,#d8d8e0 100%);
+  color:#0a0420;text-decoration:none;
+  font-family:var(--font-title);font-weight:700;font-size:16px;letter-spacing:3px;
+  box-shadow:0 8px 32px rgba(255,255,255,.18);
+  transition:transform .25s,box-shadow .25s;
+  width:max-content;
+}
+.hero .cta:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 40px rgba(255,255,255,.3);
+}
+.hero .cta::after{content:"→";font-size:1.2em}
+
+/* 底部 */
+footer{
+  position:relative;z-index:10;
+  padding:20px 48px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--font-body);font-size:12px;
+  color:rgba(255,255,255,.5);letter-spacing:1px;
+}
+footer .links a{
+  color:rgba(255,255,255,.6);text-decoration:none;margin-left:18px;
+  transition:color .2s;
+}
+footer .links a:hover{color:#fff}
+
+/* 适配 */
+@media (max-width:720px){
+  .topbar{padding:18px 24px}
+  .hero{padding:0 24px}
+  footer{padding:18px 24px;flex-direction:column;gap:8px}
+  .topbar nav{gap:14px}
+  .topbar nav a:not(.enter){display:none}
+  .hero h1{letter-spacing:2px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="bg-shade-top"></div>
+<div class="bg-shade-bottom"></div>
+
+<header class="topbar">
+  <div class="brand">星穹铁道<span class="sub">HSR · AI CHAT TERMINAL</span></div>
+  <nav>
+    <a href="preview.html">关于</a>
+    <a href="preview.html">角色</a>
+    <a href="preview.html">赞助</a>
+    <a class="enter" href="preview.html">进入聊天</a>
+  </nav>
+</header>
+
+<main class="hero">
+  <div class="badge">49 CHARACTERS · HONKAI STAR RAIL</div>
+  <h1>
+    <span class="line">与开拓者同行</span>
+    <span class="line">创造独属的奇迹</span>
+  </h1>
+  <p class="lede">
+    基于《崩坏：星穹铁道》的 AI 角色聊天终端 —— 49 位角色，多模型支持，RAG 知识库，
+    每句话都忠于原作。打开浏览器即可开与角色说话。
+  </p>
+  <a href="preview.html" class="cta">进入聊天终端</a>
+</main>
+
+<footer>
+  <div>© 上海米哈游影铁有限公司 · 角色归 HoYoverse 所有 · 本项目为非商业同人作品</div>
+  <div class="links">
+    <a href="preview.html">预览</a>
+    <a href="https://github.com/A111-Q/hsr-chat-terminal" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>
