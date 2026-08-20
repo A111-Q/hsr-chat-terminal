@@ -503,7 +503,7 @@ body{
   display:flex; gap:16px; align-items:flex-end;
 }
 .form-row-inline > div{ flex:1; }
-.form-row-inline > label.switch-label{ flex:none; }
+.form-row-inline > label.switch-label{ flex:none; align-self:center; }
 .switch-label{
   display:inline-flex; align-items:center; gap:8px;
   cursor:pointer; user-select:none;
@@ -515,6 +515,7 @@ body{
   font-size:11px; font-weight:600; color:var(--accent);
   background:var(--accent-pale); border:1px solid var(--accent-border);
   cursor:pointer; transition:transform .15s, background .15s;
+  line-height:1; vertical-align:middle;
 }
 .switch-label .sound-preview:hover{ background:var(--accent-soft); color:#fff; transform:translateY(-1px); }
 .avatar-select-row .avatar-presets{
@@ -2876,8 +2877,10 @@ function escapeHtml(str){
 }
 
 function renderBubbleText(bubble, text){
+  // 渲染层兜底：禁止弯引号“”出现，统一替换为「」（覆盖历史消息中的残留）
+  const safe = String(text).replace(/[“”]/g, (c) => c === '“' ? '「' : '」');
   // 保留换行（balanceLineBreaks 已在文本层插好 \n），将 URL 转为可点击链接
-  bubble.innerHTML = escapeHtml(text)
+  bubble.innerHTML = escapeHtml(safe)
     .replace(/\n/g, '<br>')
     .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
 }
@@ -3139,6 +3142,8 @@ function cleanReplyText(text){
     .replace(/[（(][^（）()]*[）)]/g, '')
     // 去除方括号形式的描写/旁白【…】
     .replace(/【[^】]*】/g, '')
+    // 禁止弯引号“”：统一替换为游戏风格「」（保持引用语义，且不出现禁止符号）
+    .replace(/[“”]/g, (c) => c === '“' ? '「' : '」')
     // 去除角色名前缀，如 "流萤：" / "流萤说："
     .replace(new RegExp('^\\s*' + escapeRegExp(charName) + '\\s*(?:说|说道|回答|笑道)?\\s*[:：]\\s*', 'i'), '')
     // 去除 "作为 xxx，" / "我是 xxx，" 等 AI 常见前缀
